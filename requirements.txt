@@ -1,0 +1,6 @@
+bcrypt==4.0.1
+keyboard==0.13.5
+psutil==5.9.4
+pywin32==305
+pynput==1.7.6
+six==1.16.0

@@ -1,0 +1,12 @@
+# Virtual Environment
+.venv
+
+# Py Cache
+__pychache__
+
+
+# App
+credentials.json
+config.json
+debug_log.log
+/storage

