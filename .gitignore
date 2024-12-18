@@ -2,7 +2,7 @@
 .venv
 
 # Py Cache
-__pychache__
+/__pycache__
 
 
 # App

